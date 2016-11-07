@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         NotesAdapter adapter = new NotesAdapter();
-        recyclerView.setAdapter(adapter);
 
         List<Note> dataSource = new ArrayList<>();
         for(int i = 0; i < 100; i++){
@@ -59,27 +58,20 @@ public class MainActivity extends AppCompatActivity {
             note.setTitle("Title: "+i);
             note.setText("Text: "+i);
             note.setTime(System.currentTimeMillis());
+            dataSource.add(note);
         }
-
-
+        recyclerView.setAdapter(adapter);
         adapter.setDataSource(dataSource);
+
 
         //fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Clicked on FAB", Snackbar.LENGTH_SHORT).show();
             }
         });
 
-    }
-
-
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -88,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.menu,menu);
         return true;
     }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

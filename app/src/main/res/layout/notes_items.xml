@@ -5,10 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     app:cardUseCompatPadding="true"
-    app:cardCornerRadius="@dimen/list_notes_item_cornerradius"
-    app:contentPadding="@dimen/list_notes_item_paddind"
-    app:cardElevation="7dp"
-    android:layout_margin="3dp"
+    app:cardCornerRadius="@dimen/card_cornerradius"
+    app:contentPadding="@dimen/card_paddind"
+    app:cardElevation="@dimen/card_elevation"
+    android:layout_margin="@dimen/card_margin"
     android:id="@id/list_notes"
     android:layout_width="match_parent"
     android:layout_height="@dimen/card_height">

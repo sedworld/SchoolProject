@@ -17,17 +17,16 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
-
     </style>
 
     <style name="PrimaryTextViewStyle" parent="DefaultTextView">
         <item name="android:textSize">@dimen/list_notes_title_text_size</item>
-        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
     </style>
 
     <style name="SecondaryTextViewStyle" parent="DefaultTextView">
-        <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@android:color/secondary_text_light</item>
+        <item name="android:textSize">@dimen/list_notes_title_text2_size</item>
+        <item name="android:textColor">@android:color/secondary_text_dark</item>
     </style>
 
 
