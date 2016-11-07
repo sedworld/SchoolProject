@@ -14,39 +14,57 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.victor.less3110.adapters.NotesAdapter;
+import com.example.victor.less3110.model.Note;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerView = null;
-    private Toolbar toolbar = null;
-    private FloatingActionButton fab = null;
+
+    @BindView (R.id.list_notes)
+    protected RecyclerView recyclerView;
+    @BindView (R.id.fab)
+    protected FloatingActionButton fab;
+    @BindView (R.id.toolbar)
+    protected Toolbar toolbar;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = (RecyclerView) findViewById(R.id.list_notes);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        ButterKnife.bind(this);
+
+        //recyclerView = (RecyclerView) findViewById(R.id.list_notes);
+        //toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(R.string.app_name);
+        //setTitle(R.string.app_name);
+        setTitle("My App Title");
 
         //как будет отображать список
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false); //вертикальный список
         recyclerView.setLayoutManager(layoutManager);
-        NotesAdapter adapter = new NotesAdapter();
 
-        List<String> dataSource = new ArrayList<String>();
+        NotesAdapter adapter = new NotesAdapter();
+        recyclerView.setAdapter(adapter);
+
+        List<Note> dataSource = new ArrayList<>();
         for(int i = 0; i < 100; i++){
-            dataSource.add("title: " + i);
+            Note note = new Note();
+            note.setTitle("Title: "+i);
+            note.setText("Text: "+i);
+            note.setTime(System.currentTimeMillis());
         }
 
-        recyclerView.setAdapter(adapter);
+
         adapter.setDataSource(dataSource);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        //fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
