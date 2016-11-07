@@ -1,5 +1,6 @@
 package com.example.victor.less3110;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.victor.less3110.adapters.NotesAdapter;
 
@@ -19,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView = null;
     private Toolbar toolbar = null;
+    private FloatingActionButton fab = null;
 
 
     @Override
@@ -34,13 +37,27 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false); //вертикальный список
         recyclerView.setLayoutManager(layoutManager);
         NotesAdapter adapter = new NotesAdapter();
+
         List<String> dataSource = new ArrayList<String>();
         for(int i = 0; i < 100; i++){
             dataSource.add("title: " + i);
         }
+
         recyclerView.setAdapter(adapter);
         adapter.setDataSource(dataSource);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
     }
+
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
