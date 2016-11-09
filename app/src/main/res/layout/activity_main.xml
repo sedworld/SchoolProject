@@ -45,6 +45,6 @@
         app:layout_anchorGravity="bottom|right|end"
         app:fabSize="normal"
 
-        app:srcCompat="@android:drawable/ic_lock_power_off" />
+        app:srcCompat="@drawable/arrow_up_bold_circle" />
 
 </android.support.design.widget.CoordinatorLayout>

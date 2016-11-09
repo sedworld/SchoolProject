@@ -16,19 +16,22 @@
     <TextView
         tools:text="text"
         style="@style/PrimaryTextViewStyle"
-        android:id="@+id/notes_text_view"/>
+        android:id="@+id/notes_text_view"
+        android:textColor="@android:color/primary_text_light" />
 
     <TextView
         style="@style/SecondaryTextViewStyle"
         android:layout_gravity="bottom"
         tools:text="text2"
-        android:id="@+id/notes_text_view_second"/>
+        android:id="@+id/notes_text_view_second"
+        android:textColor="@android:color/secondary_text_light" />
 
     <TextView
         android:layout_gravity="right"
         tools:text="text3"
         style="@style/SecondaryTextViewStyle"
-        android:id="@+id/date_text_view"/>
+        android:id="@+id/date_text_view"
+        android:textColor="@android:color/secondary_text_light" />
 
 
 </android.support.v7.widget.CardView>
