@@ -23,6 +23,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.victor.less3110.activitys.EditNote.DATA_KEY;
+
 public class MainActivity extends AppCompatActivity {
 
     @BindView (R.id.list_notes)
@@ -69,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            EditNote.start(MainActivity.this);
+                Intent intent = EditNote.newInstance(MainActivity.this);
+                intent.putExtra(DATA_KEY, "qwerty");
+                startActivity(intent);
             }
         });
 
