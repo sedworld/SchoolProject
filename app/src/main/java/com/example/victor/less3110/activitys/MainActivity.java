@@ -1,5 +1,6 @@
-package com.example.victor.less3110;
+package com.example.victor.less3110.activitys;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +8,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.victor.less3110.R;
 import com.example.victor.less3110.adapters.NotesAdapter;
 import com.example.victor.less3110.model.Note;
 
@@ -25,11 +26,11 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     @BindView (R.id.list_notes)
-    protected RecyclerView recyclerView;
+    protected RecyclerView mRecyclerView;
     @BindView (R.id.fab)
-    protected FloatingActionButton fab;
+    protected FloatingActionButton mFab;
     @BindView (R.id.toolbar)
-    protected Toolbar toolbar;
+    protected Toolbar mToolbar;
 
 
 
@@ -40,15 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        //recyclerView = (RecyclerView) findViewById(R.id.list_notes);
-        //toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //mRecyclerView = (RecyclerView) findViewById(R.id.list_notes);
+        //mToolbar = (Toolbar) findViewById(R.id.mToolbar);
+        setSupportActionBar(mToolbar);
         //setTitle(R.string.app_name);
         setTitle("My App Title");
 
         //как будет отображать список
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false); //вертикальный список
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
 
         NotesAdapter adapter = new NotesAdapter();
 
@@ -60,15 +61,15 @@ public class MainActivity extends AppCompatActivity {
             note.setTime(System.currentTimeMillis());
             dataSource.add(note);
         }
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
         adapter.setDataSource(dataSource);
 
 
-        //fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        //mFab = (FloatingActionButton) findViewById(R.id.mFab);
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Clicked on FAB", Snackbar.LENGTH_SHORT).show();
+            EditNote.start(MainActivity.this);
             }
         });
 
@@ -92,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.action_settings:
-                Snackbar.make(recyclerView,R.string.action_settings,Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mRecyclerView,R.string.action_settings,Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.help:
-                Snackbar.make(recyclerView,R.string.help,Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mRecyclerView,R.string.help,Snackbar.LENGTH_SHORT).show();
                 return true;
             default: return super.onOptionsItemSelected(item);
 
