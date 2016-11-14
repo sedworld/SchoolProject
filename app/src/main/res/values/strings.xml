@@ -2,4 +2,9 @@
     <string name="app_name">less3110</string>
     <string name="action_settings">settings</string>
     <string name="help">help!</string>
+
+        <string
+            formatted="false"
+            name="sharing_template">Title: %s\nText: %s</string>
 </resources>
+

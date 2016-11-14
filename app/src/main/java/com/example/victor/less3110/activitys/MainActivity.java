@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.victor.less3110.R;
 import com.example.victor.less3110.adapters.NotesAdapter;
@@ -22,17 +23,21 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.example.victor.less3110.activitys.EditNote.DATA_KEY;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int REQUEST_CODE = 100;
     @BindView (R.id.list_notes)
     protected RecyclerView mRecyclerView;
-    @BindView (R.id.fab)
-    protected FloatingActionButton mFab;
+//    @BindView (R.id.fab)
+//    protected FloatingActionButton mFab;
     @BindView (R.id.toolbar)
     protected Toolbar mToolbar;
+
+
 
 
 
@@ -68,15 +73,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         //mFab = (FloatingActionButton) findViewById(R.id.mFab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = EditNote.newInstance(MainActivity.this);
-                intent.putExtra(DATA_KEY, "qwerty");
-                startActivity(intent);
-            }
-        });
+//        mFab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = EditNote.newInstance(MainActivity.this);
+//                intent.putExtra(DATA_KEY, "qwerty");
+//                startActivity(intent);
+//            }
+//        });
 
+    }
+
+    @OnClick(R.id.fab)
+    public void onFabClick(View view){
+        Intent intent = EditNote.newInstance(MainActivity.this);
+        intent.putExtra(DATA_KEY, "qwerty");
+        startActivityForResult(intent,REQUEST_CODE);
     }
 
     @Override
@@ -106,5 +118,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            if(requestCode == REQUEST_CODE){
+                String result = data.getStringExtra(EditNote.RESULT);
+                Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
