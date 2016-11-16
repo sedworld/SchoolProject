@@ -38,6 +38,10 @@
         <item name="colorAccent">@color/colorPrimary</item>
     </style>
 
+    <style name="PrimaryColorBackButtonTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 
 
 </resources>

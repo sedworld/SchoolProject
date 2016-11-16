@@ -1,8 +1,12 @@
 package com.example.victor.less3110.activitys;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.victor.less3110.R;
 import com.example.victor.less3110.adapters.NotesAdapter;
+import com.example.victor.less3110.db.NotesContract;
 import com.example.victor.less3110.model.Note;
 
 import java.util.ArrayList;
@@ -27,7 +32,7 @@ import butterknife.OnClick;
 
 import static com.example.victor.less3110.activitys.EditNote.DATA_KEY;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     public static final int REQUEST_CODE = 100;
     @BindView (R.id.list_notes)
@@ -59,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
 
         NotesAdapter adapter = new NotesAdapter();
-
+//
         List<Note> dataSource = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
-            Note note = new Note();
-            note.setTitle("Title: "+i);
-            note.setText("Text: "+i);
-            note.setTime(System.currentTimeMillis());
-            dataSource.add(note);
-        }
+//        for(int i = 0; i < 100; i++){
+//            Note note = new Note();
+//            note.setTitle("Title: "+i);
+//            note.setText("Text: "+i);
+//            note.setTime(System.currentTimeMillis());
+//            dataSource.add(note);
+//        }
         mRecyclerView.setAdapter(adapter);
         adapter.setDataSource(dataSource);
 
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+        getSupportLoaderManager().initLoader(R.id.notes_loader, null, this);
 
     }
 
@@ -131,5 +137,35 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(
+                this,
+                NotesContract.CONTENT_URI,
+                null,
+                null,
+                null,
+                null);
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+        List<Note> dataSource = new ArrayList<>();
+        if(data == null) return;
+        while (data.moveToNext()) {
+            dataSource.add(new Note(data));
+        }
+        NotesAdapter adapter = new NotesAdapter();
+        mRecyclerView.setAdapter(adapter);
+        adapter.setDataSource(dataSource);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }

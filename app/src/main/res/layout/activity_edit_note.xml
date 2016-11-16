@@ -39,4 +39,15 @@
         android:layout_below="@+id/editTitle"
         android:id="@+id/editText" />
 
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/saveBtn"
+        android:text="@string/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/PrimaryColorBackButtonTheme"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

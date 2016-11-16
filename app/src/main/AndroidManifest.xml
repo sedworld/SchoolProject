@@ -15,7 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.EditNote"></activity>
+        <activity android:name=".activitys.EditNote">
+            <provider
+                android:authorities="com.example.victor.less3110"
+                android:name=".notes_content_provider.NotesContentProvider"
+                android:exported="false"/>
+        </activity>
     </application>
 
 </manifest>

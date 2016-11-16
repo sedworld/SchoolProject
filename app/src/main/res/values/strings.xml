@@ -6,5 +6,6 @@
         <string
             formatted="false"
             name="sharing_template">Title: %s\nText: %s</string>
+    <string name="save">save</string>
 </resources>
 

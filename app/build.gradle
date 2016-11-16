@@ -36,6 +36,8 @@ buildscript{
     }
 }
 
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -45,6 +47,9 @@ dependencies {
     compile "com.android.support:design:${supportVersion}"
     compile "com.jakewharton:butterknife:${butterVersion}"
     apt "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+
+    compile 'com.github.provigen:ProviGen-lib:2.0.1'
+
 
     testCompile 'junit:junit:4.12'
 

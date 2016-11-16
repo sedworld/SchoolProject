@@ -1,5 +1,6 @@
 package com.example.victor.less3110.activitys;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.victor.less3110.R;
+import com.example.victor.less3110.db.NotesContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.example.victor.less3110.activitys.MainActivity.REQUEST_CODE;
 
@@ -104,5 +107,18 @@ public class EditNote extends AppCompatActivity {
                 mEditText.getText());
     }
 
+    @OnClick(R.id.saveBtn)
+    public void onSaveBtnClick() {
+        insertNote();
+        finish();
+    }
+
+    private void insertNote() {
+        ContentValues values = new ContentValues();
+        values.put(NotesContract.TITLE_COLUMN, mEditTitle.getText().toString());
+        values.put(NotesContract.TEXT_COLUMN, mEditText.getText().toString());
+        values.put(NotesContract.TIME_COLUMN, String.valueOf(System.currentTimeMillis()));
+        getContentResolver().insert(NotesContract.CONTENT_URI, values);
+    }
 
 }
